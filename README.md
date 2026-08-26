@@ -42,10 +42,15 @@
 
 ## التشغيل محليًا
 
+يدعم المشروع مزوّدين للذكاء الاصطناعي (قابل للتبديل عبر `PROVIDER` في `.env`):
+
+- **`gemini`** (الافتراضي) — **مجاني بالكامل**، مفتاح من [aistudio.google.com/apikey](https://aistudio.google.com/apikey) بدون بطاقة بنكية
+- **`anthropic`** — جودة أعلى، يحتاج رصيد مدفوع من [console.anthropic.com](https://console.anthropic.com/settings/keys)
+
 ```bash
 npm install
 cp .env.example .env
-# حط مفتاحك من https://console.anthropic.com/settings/keys داخل .env
+# حط GEMINI_API_KEY (مجاني) أو ANTHROPIC_API_KEY داخل .env
 
 npm start          # يشغّل agent-server (ويشغّل mcp-server تلقائيًا كـ subprocess)
 ```
