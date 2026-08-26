@@ -1,0 +1,23 @@
+{
+  "name": "ai-support-agent-mcp",
+  "version": "1.0.0",
+  "description": "AI support agent (MCP tool-calling) + n8n webhook automation, deployable on a VPS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node agent-server/index.js",
+    "mcp": "node mcp-server/index.js",
+    "chat": "node cli/chat.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.120.0",
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1"
+  }
+}

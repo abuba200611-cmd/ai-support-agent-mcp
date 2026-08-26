@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<title>وكيل دعم العملاء</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root { color-scheme: light dark; }
+  body { font-family: system-ui, "Segoe UI", Tahoma, sans-serif; max-width: 640px; margin: 40px auto; padding: 0 16px; background:#0b0d12; color:#e8eaed; }
+  h1 { font-size: 1.3rem; }
+  #log { border: 1px solid #2a2f3a; border-radius: 10px; padding: 16px; min-height: 260px; margin-bottom: 12px; background:#11141c; }
+  .msg { margin-bottom: 10px; line-height: 1.6; }
+  .user { color: #7db4ff; }
+  .bot { color: #a6f0c6; }
+  form { display: flex; gap: 8px; }
+  input { flex: 1; padding: 10px 12px; border-radius: 8px; border: 1px solid #2a2f3a; background:#11141c; color:#e8eaed; }
+  button { padding: 10px 16px; border-radius: 8px; border: none; background: #3d7eff; color: white; cursor: pointer; }
+  button:disabled { opacity: .6; cursor: default; }
+  small { color: #8a90a0; }
+</style>
+</head>
+<body>
+  <h1>🤖 وكيل دعم عملاء المتجر</h1>
+  <small>جرّب: "وش حالة طلبي رقم 1001؟" / "عندكم ساعات ذكية؟" / "كم مدة التوصيل لجدة؟"</small>
+  <div id="log"></div>
+  <form id="f">
+    <input id="q" placeholder="اكتب سؤالك هنا..." autocomplete="off" />
+    <button id="send">إرسال</button>
+  </form>
+
+<script>
+  const log = document.getElementById('log');
+  const form = document.getElementById('f');
+  const input = document.getElementById('q');
+  const btn = document.getElementById('send');
+
+  function add(role, text) {
+    const div = document.createElement('div');
+    div.className = 'msg ' + (role === 'user' ? 'user' : 'bot');
+    div.textContent = (role === 'user' ? 'أنت: ' : 'الوكيل: ') + text;
+    log.appendChild(div);
+    log.scrollTop = log.scrollHeight;
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const message = input.value.trim();
+    if (!message) return;
+    add('user', message);
+    input.value = '';
+    btn.disabled = true;
+    add('bot', '...');
+    try {
+      const res = await fetch('/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message }),
+      });
+      const data = await res.json();
+      log.lastChild.textContent = 'الوكيل: ' + (data.reply || data.error || 'حدث خطأ');
+    } catch (err) {
+      log.lastChild.textContent = 'الوكيل: تعذّر الاتصال بالسيرفر';
+    } finally {
+      btn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>
