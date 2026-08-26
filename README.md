@@ -1,5 +1,8 @@
 # 🤖 وكيل دعم عملاء بالذكاء الاصطناعي — MCP + n8n + VPS
 
+🔗 **تجربة حية:** [ai-support-agent-mcp.onrender.com](https://ai-support-agent-mcp.onrender.com)
+(منشور مجانًا بالكامل على Render — أول طلب قد ياخذ ~30-50 ثانية لأن الخطة المجانية تنام بعد عدم النشاط)
+
 مشروع بورتفوليو صغير مبني خصيصًا ليغطي متطلبات وظيفة **AI Agents & Automation Engineer**:
 بناء وكيل AI (Agent) باستخدام **بروتوكول MCP** لاستدعاء الأدوات (Tool Calling)، مربوط بأتمتة
 **n8n** عبر **Webhook/API**، ومنشور فعليًا على **VPS**، مع **CLI** لاختباره من الطرفية.
@@ -71,10 +74,13 @@ docker compose -f deploy/docker-compose.yml up -d
 وبعدها ابعث POST لـ `http://localhost:5678/webhook/support-chat` بـ body:
 `{"message": "عندكم سماعات؟"}`
 
-## النشر على VPS
+## النشر
 
-راجع [`deploy/VPS-SETUP.md`](deploy/VPS-SETUP.md) — دليل كامل خطوة بخطوة من إنشاء السيرفر
-لين تشغيل المشروع عليه بـ Docker.
+- **الحالي (مجاني، بدون بطاقة):** منشور على [Render](https://render.com) — رابط حي أعلاه. يوضّح القدرة
+  على نشر تطبيق Node حقيقي متصل بـMCP على الإنترنت، مع بيئة إنتاج فعلية (متغيرات بيئة، build/start commands).
+- **البديل الموثّق (VPS كامل):** راجع [`deploy/VPS-SETUP.md`](deploy/VPS-SETUP.md) — دليل خطوة بخطوة
+  كامل لنشر المشروع بـDocker على VPS حقيقي (Hetzner/DigitalOcean) مع تحكم كامل بالسيرفر (root access،
+  firewall، Nginx، SSL) — جاهز للتنفيذ فور توفر بطاقة بنكية للتحقق.
 
 ## لماذا هذا المشروع يغطي متطلبات الوظيفة
 
