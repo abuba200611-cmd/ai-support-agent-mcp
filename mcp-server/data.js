@@ -3,7 +3,7 @@
 
 export const ORDERS = {
   "1001": { status: "تم الشحن", city: "الرياض", eta: "خلال يومين", items: ["سماعة لاسلكية"] },
-  "1002": { status: "قيد التجهيز", city: "جدة", eta: "خلال 4 أيام", items: ["ساعة ذكية", "شاحن سريع"] },
+  "1002": { status: "قيد التجهيز", city: "مكة", eta: "خلال 4 أيام", items: ["ساعة ذكية", "شاحن سريع"] },
   "1003": { status: "تم التوصيل", city: "الدمام", eta: "تم التسليم بالفعل", items: ["حقيبة ظهر"] },
 };
 
@@ -16,7 +16,7 @@ export const PRODUCTS = [
 
 export const SHIPPING = {
   "الرياض": { days: "1-2", cost: 15 },
-  "جدة": { days: "2-4", cost: 15 },
+  "مكة": { days: "2-4", cost: 15 },
   "الدمام": { days: "2-3", cost: 20 },
   "default": { days: "3-6", cost: 25 },
 };
